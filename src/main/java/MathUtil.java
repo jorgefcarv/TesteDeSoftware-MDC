@@ -1,3 +1,5 @@
+import java.util.Objects;
+
 public class MathUtil {
     public static double mdc(double a, double b){
         //P7
@@ -13,7 +15,6 @@ public class MathUtil {
         if (b > 0 && a % b == 0) {
             return b;
         }
-
         //P3
         if( b == 0) {
             return Math.abs(a);
@@ -24,14 +25,14 @@ public class MathUtil {
     }
 
     public static double mdc(double ...valores){
-        double a = valores[0];
-        /*for (int i = 1; i < valores.length; i++) {
-            final double b = valores[i];
-            a = mdc(a,b);
-        }*/
-        for (final double b : valores) {
-            a = mdc(a,b);
+        Objects.requireNonNull(valores, "O valor não pode ser nulo");
+        if(valores.length == 0){
+            throw new IllegalArgumentException("Indique pelo menos 1 número para calcular o mdc");
+        }
 
+        double a = valores[0];
+        for (double b : valores) {
+            a = mdc(a, b);
         }
         return a;
     }

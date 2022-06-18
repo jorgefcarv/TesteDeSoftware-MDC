@@ -1,5 +1,4 @@
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestTemplate;
 
 import static org.junit.jupiter.api.Assertions.*;
 //import static  pacote.MathUtil.*;
@@ -18,13 +17,14 @@ class MathUtilTest {
         final double obtido = MathUtil.mdc(a,b);
         assertEquals(esperado, obtido);
     }
+
     @Test
     void mdcP2(){
         final double a = 8, b = 4, divisor = 2;
         final double obtido = MathUtil.mdc(a,b);
         assertTrue(obtido % divisor == 0);
-
     }
+
     @Test
     void mdcP3(){
         final double a = 5, esperado = a;
@@ -69,6 +69,7 @@ class MathUtilTest {
         final double obtido = MathUtil.mdc(a, -b);
         assertEquals(esperado, obtido);
     }
+
     @Test
     void mdcP7Primos(){
         final double a = 7, b = 3;
@@ -78,6 +79,7 @@ class MathUtilTest {
         System.out.println("esperado: " + esperado + " obtido: " + obtido);
 
     }
+
     @Test
     void mdcP12UmNumeroPrimo(){
         final double p = 7;
@@ -97,17 +99,28 @@ class MathUtilTest {
         System.out.println("esperado: " + p + " obtido: " + obtido);
         assertEquals(p, obtido);
     }
+
     @Test
     void mdcCasoGeralPares() {
         final double a = 12, b = 8, esperado = 4;
         final double obtido = MathUtil.mdc(a,b);
         assertEquals(esperado, obtido);
     }
+
     @Test
     void mdcMultiplosValores(){
         final double esperado = 4;
         final double obtido = MathUtil.mdc(12,8,4);
         assertEquals(esperado, obtido);
     }
-}
 
+    @Test
+    void testMdcNenhumParametro(){
+        assertThrows(IllegalArgumentException.class, () -> MathUtil.mdc());
+    }
+
+    @Test
+    void MdcNulo(){
+        assertThrows(NullPointerException.class, () -> MathUtil.mdc(null));
+    }
+}
